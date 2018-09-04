@@ -1,0 +1,55 @@
+//定义一个变量和一个mixin
+$baseFontSize = 100; //默认基准font-size
+pr(pxNum) {
+  (pxNum / $baseFontSize) * 1rem;
+}
+
+@font-face {
+    font-family: 'fwsj_font';
+    src: url('./fwsj_font.ttf');
+}  
+
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font: pr(90) 'fwsj_font', arial, serif, 'Microsoft YaHei';
+}
+
+// 头部
+header {
+    height: 4rem;
+    background: #fafafa
+    border-bottom: 1px solid #ddd
+    .title {
+        line-height: 4rem
+        text-align: center  
+        font-size: pr(120) 
+        font-family: 'fwsj_font'
+    }
+}
+
+section {
+    flex: 1;
+
+    main {
+        margin: 1rem 0
+        width: 20rem
+        .title {
+            font-size: pr(105)
+            margin: .5rem 0
+            text-align: center
+        }
+    }
+    
+}
+
+footer {
+    height: 4rem;
+    background: #fafafa
+    border-top: 1px solid #ddd
+}
+
