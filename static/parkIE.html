@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>广州塔停车场进出数据</title>
+    <script src="./js/quote/rem.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="dialog" id="parkIE">
+        <!-- <button class="close-btn" @click="window.close()"></button> -->
+
+        <!-- <div class="title">停车场进出数据</div> -->
+        
+        <ul class="table">
+            <li>
+                <span>记录编号</span>
+                <span>车牌号</span>
+                <span>卡片类型</span>
+                <span>通过时间</span>
+                <span>通过出口</span>
+                <span>状态</span>
+                <!-- <span>入库时间</span> -->
+                <!-- <span>检验标志</span> -->
+            </li>
+            <li v-if="nowData === 'empty'" class="not-data-li">没有获取到数据~</li>            
+            <li v-else-if="!nowData" class="not-data-li"><i class="fa fa-spinner fa-pulse"></i></li>
+            <li v-else v-for="v of nowData" >
+                <span :title="v.recnum" v-text="v.recnum"></span>
+                <span :title="v.CarNo" v-text="v.CarNo"></span>
+                <span :title="v.cardtype" v-text="v.cardtype"></span>
+                <span :title="v.acctime" v-text="v.acctime"></span>
+                <span :title="v.accdoor" v-text="v.accdoor"></span>
+                <span :title="v.status" v-text="v.status"></span>
+                <!-- <span :title="v.interdate" v-text="v.interdate"></span> -->
+                <!-- <span :title="v.checkflag" v-text="v.checkflag"></span> -->
+            </li>
+
+        </ul>
+
+         <!-- 分页 -->
+         <pagination :pages="CTData.length" @nowpage="nowDataFn"></pagination>
+        
+    </div>
+
+    <script src="./js/quote/vue.min.js"></script>
+    <script src="./js/quote/axios.min.js"></script>
+    <script src="./js/quote/lodash.min.js"></script>
+    <script src="./js/components/page.js"></script>
+    <script src="./js/util/formatDate.js"></script>    
+    <script src="./js/parkIE.js"></script>
+</body>
+
+</html>

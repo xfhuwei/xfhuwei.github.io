@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>广州塔登塔人员动态</title>
+    <script src="./js/quote/rem.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="dynamic-box" id="dynamic">
+
+        <div class="left-box">
+            <div class="date-p">
+                <span v-html="date"></span>
+                <div @click="showDateFn" class="date-btn">
+                    <div v-show="showDate" id="date-box" class="date-box"></div>
+                </div>
+            </div>
+            <div class="all-box">
+                <p>登塔人数</p>
+                <span v-html="DYData.allPople">1746</span>
+            </div>
+            <div class="icon-list">
+                <div class="item">
+                    <img src="./img/p1.png" />
+                    <span>关注人数</span>
+                    <p v-html="DYData.attPople">26</p>
+                </div>
+                <div class="item">
+                        <img src="./img/p2.png" />
+                    <span>涉毒人员</span>                    
+                    <p v-html="DYData.narPople">26</p>
+                </div>
+                <div class="item">
+                        <img src="./img/p3.png" />
+                    <span>盗窃人员</span>                    
+                    <p v-html="DYData.thePople">26</p>
+                </div>
+                <div class="item">
+                        <img src="./img/p4.png" />
+                    <span>精神病人</span>                    
+                    <p v-html="DYData.menPople">26</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-box">
+            <div class="title">
+                <span @click="qhTags(1)" :class="{active: rightType == 1}">
+                    关注人员明细列表
+                </span>
+                <span @click="qhTags(2)" :class="{active: rightType == 2}">
+                    登塔人数分析统计
+                </span>
+            </div>
+
+            <div v-show="rightType == 1" class="gz-pople-box">
+                <div class="item" v-for="v of DYData.attPopleList">
+                    <img :src="v.imgUrl" />
+                    <p v-html="v.dtTime">19:15:14</p>
+                    <p v-html="v.name">爱新觉罗·弘历</p>
+                    <p v-html="v.desc">常住人口</p>
+                </div>
+            </div>
+
+            <div v-show="rightType == 2" class="gz-table-box">
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="DayDate-chart" class="DayDate-chart"></div>
+                <div id="gz-chart" class="gz-chart"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/quote/vue.min.js"></script>
+    <script src="./js/quote/axios.min.js"></script>
+    <script src="./js/quote/lodash.min.js"></script>
+    <script src="./js/components/page.js"></script>
+    <script src="./js/util/formatDate.js"></script>
+    <script src="./js/laydate/laydate.js"></script>
+    <script src="./js/quote/echarts.min.js"></script>
+    <script src="./js/dynamic.js"></script>
+</body>
+
+</html>

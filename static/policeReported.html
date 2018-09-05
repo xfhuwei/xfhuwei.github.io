@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>广州塔警员报备数据</title>
+    <script src="./js/quote/rem.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="dialog" id="policeReported">
+        <!-- <button class="close-btn"  @click="window.close()"></button> -->
+
+        <!-- <div class="title">警员报备数据</div> -->
+        
+        <ul class="table">
+            <li>
+                <span>地点名称</span>
+                <span>警员姓名</span>
+                <!-- <span>警员编号</span> -->
+                <span>身份证号码</span>
+                <span>报备时间</span>
+                <span>开始时间</span>
+                <span>结束时间</span>
+            </li>
+            <li v-if="nowData === 'empty'" class="not-data-li">没有获取到数据~</li>            
+            <li v-else-if="!nowData" class="not-data-li"><i class="fa fa-spinner fa-pulse"></i></li>
+            <li v-else v-for="v of nowData" >
+                <span :title="v.barrierName" v-text="v.barrierName"></span>
+                <span :title="v.policename" v-text="v.policename"></span>
+                <!-- <span :title="v.policeId" v-text="v.policeId"></span>                 -->
+                <span :title="v.sfzh" v-text="v.sfzh"></span>
+                <span :title="v.reportDate" v-text="v.reportDate"></span>
+                <span :title="v.watchBegin" v-text="v.watchBegin"></span>
+                <span :title="v.watchEnd" v-text="v.watchEnd"></span>
+            </li>
+
+        </ul>
+
+        <!-- 分页 -->
+        <pagination :pages="CTData.length" @nowpage="nowDataFn"></pagination>
+        
+    </div>
+
+    <script src="./js/quote/vue.min.js"></script>
+    <script src="./js/quote/axios.min.js"></script>
+    <script src="./js/quote/lodash.min.js"></script>
+    <script src="./js/components/page.js"></script>
+    <script src="./js/util/formatDate.js"></script>    
+    <script src="./js/policeReported.js"></script>
+</body>
+
+</html>

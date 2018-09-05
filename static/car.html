@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>广州塔登停车场动态</title>
+    <script src="./js/quote/rem.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="dynamic-box" id="car">
+
+        <div class="left-box">
+            <div class="date-p">
+                <span v-html="date"></span>
+                <!--<div @click="showDateFn" class="date-btn">-->
+                    <!--<div v-show="showDate" id="date-box" class="date-box"></div>-->
+                <!--</div>-->
+            </div>
+            <div class="all-box">
+                <p>在场车辆数</p>
+                <span v-html="DYData.allCar">164</span>
+            </div>
+            <div class="all-box">
+                <p>关注车辆数</p>
+                <span v-html="DYData.attCar">164</span>
+            </div>
+        </div>
+
+        <div class="right-box">
+            <div class="title">
+                <span @click="qhTags(1)" :class="{active: rightType == 1}">
+                    广州塔停车场车辆统计
+                </span>
+            </div>
+
+            <div v-show="rightType == 1" class="gz-table-box">
+                <div id="DayDate-chart" class="DayDate-chart"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/quote/vue.min.js"></script>
+    <script src="./js/quote/axios.min.js"></script>
+    <script src="./js/quote/lodash.min.js"></script>
+    <script src="./js/components/page.js"></script>
+    <script src="./js/util/formatDate.js"></script>
+    <script src="./js/laydate/laydate.js"></script>
+    <script src="./js/quote/echarts.min.js"></script>
+    <script src="./js/car.js"></script>
+</body>
+
+</html>
