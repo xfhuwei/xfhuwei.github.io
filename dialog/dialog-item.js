@@ -2,23 +2,26 @@
  * 原生js简易弹出层
  * author: laohu
  */
-
-// 加载css
-var css = document.createElement('link');
-css.rel = 'stylesheet';
-var scripts = document.getElementsByTagName("script");
-var file;
-for (var i=0; i<scripts.length; i++) {
-  var url = scripts[i].getAttribute("src")
-  if (url.indexOf('dialog-item.js')) {
-    file = url.replace('dialog-item.js', 'dialog-item.css')
-  }
-}
-css.href = file;
-document.head.appendChild(css);
-
 window.dialog = {
   init: function() {
+
+    // 加载css
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    var scripts = document.getElementsByTagName('script');
+    var file;
+    for (var i = 0; i < scripts.length; i ++) {
+      var url = scripts[i].getAttribute('src');
+      if (url.indexOf('dialog-item.js')) {
+        file = url.replace('.js', '.css');
+      }
+    }
+    css.href = file;
+    document.head.appendChild(css);
+
+
+
+    console.log('laohu简易原生js弹出提示层已生效。');
 
   },
 
@@ -28,15 +31,15 @@ window.dialog = {
    */
   msg: function(content, time, callback) {
 
-    if (!content) { content = '这是一条提示。' }
-    if (!time) { time = 3000 }
-    if (!callback) { callback = function(){} }
+    if (!content) { content = '这是一条提示。'; }
+    if (!time) { time = 3000; }
+    if (!callback) { callback = function(){}; }
 
     var div = document.createElement("div");
     div.className = 'dialog-box dialog-msg-box';
     div.innerHTML = `
       <div class="dialog-msg animated">${ content }</div>
-    `
+    `;
     document.body.appendChild(div);
     div.children[0].className += ' bounceIn';
 
@@ -56,8 +59,8 @@ window.dialog = {
    */
   alert: function (content, callback) {
 
-    if (!content) { content = '这是一条提示。' }
-    if (!callback) { callback = function(){} }
+    if (!content) { content = '这是一条提示。'; }
+    if (!callback) { callback = function(){}; }
 
     var div = document.createElement("div");
     div.className = 'dialog-box dialog-alert-box';
@@ -69,7 +72,7 @@ window.dialog = {
           <button>确定</button>
         </div>
       </div>
-    `
+    `;
     document.body.appendChild(div);
 
     div.children[0].className += ' bounceIn';
@@ -90,9 +93,9 @@ window.dialog = {
    */
   affirm: function (content, Tcallback, Qcallback) {
 
-    if (!content) { content = '这是一条提示。' }
-    if (!Tcallback) { Tcallback = function(){} }
-    if (!Qcallback) { Qcallback = function(){} }
+    if (!content) { content = '这是一条提示。'; }
+    if (!Tcallback) { Tcallback = function(){}; }
+    if (!Qcallback) { Qcallback = function(){}; }
 
     var div = document.createElement("div");
     div.className = 'dialog-box dialog-affirm-box';
@@ -105,7 +108,7 @@ window.dialog = {
           <button>取消</button>
         </div>
       </div>
-    `
+    `;
     document.body.appendChild(div);
 
     div.children[0].className += ' bounceIn';
@@ -144,13 +147,13 @@ window.dialog = {
             <div class="load-content">加载中...</div>
           </div>
         </div>
-      `
+      `;
     } else {
       div.innerHTML = `
         <div class="animated">
           <div class="dialog-load-0 animated"></div>
         </div>
-      `
+      `;
     }
 
     document.body.appendChild(div);
@@ -173,11 +176,11 @@ window.dialog = {
    *  用此方法关闭框则写好的回调不会再执行
    */
   close: function (name, callback) {
-    if (!callback) { callback = function(){} }
+    if (!callback) { callback = function(){}; }
     if (name) {
-      name = '.dialog-'+ name +'-box'
+      name = '.dialog-'+ name +'-box';
     } else {
-      name = '.dialog-box'
+      name = '.dialog-box';
     }
     var eles = document.querySelectorAll(name);
     for (var i=0; i<eles.length; i++) {
@@ -188,8 +191,36 @@ window.dialog = {
         callback();
       }, 750);
     }
+  },
+
+  /**
+   *  更改主题颜色
+   *  为了省事只能传 rgb 的色值 ， 如 '8, 107, 201'
+   */
+  style: function (rgb) {
+    if (!rgb) {
+      return;
+    }
+    var style = document.getElementById('dialog-style');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'dialog-style';
+    }
+    style.innerHTML = `
+      .dialog-box {
+        --color: rgba(${rgb}, 0.9);
+        --sColor: rgba(${rgb}, 1);
+        --qColor: rgba(${rgb}, 0.8);
+        --c2: rgba(${rgb}, 0.2);
+        --c5: rgba(${rgb}, 0.5);
+        --c7: rgba(${rgb}, 0.7);
+      }
+    `
+    document.head.appendChild(style);
   }
 
 
 }
 
+// 启动
+window.dialog.init();

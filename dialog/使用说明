@@ -1,12 +1,15 @@
 《原生js精简弹出层》
 
-版本： 1.0
+版本： 1.1
 作者： laohu
+日期： 2018-09-17
+
+说明：
+  此插件要求现代浏览器，ie直接忽略
 
 使用：
   1、将dialog文件复制到自己的项目当中
-  2、页面只引用 dialog-item.js 即可、不用依赖其他js
-  3、如需改变颜色风格 修改 dialog-item.css 开头的几个js即可
+  2、页面只引用 dialog-item.min.js 即可、不用依赖其他js
 
 api：
   1、弹出消息 msg
@@ -34,3 +37,7 @@ api：
   5、关闭 close
     dialog.load([name])
       name: 需要关闭的框类型 如'alert', 默认
+
+  6、改主题色 style
+    dialog.load(rgb)
+      rgb: 颜色rgb值 ：形如： '100,100,100'

@@ -1,4 +1,5 @@
-* {
+/* 主题颜色 */
+.dialog-box {
   --color: rgba(8, 107, 201, 0.9);
   --sColor: rgba(8, 107, 201, 1);
   --qColor: rgba(8, 107, 201, 0.8);
